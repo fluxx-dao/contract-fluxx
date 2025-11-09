@@ -1,0 +1,25 @@
+{
+  "name": "Colaborador",
+  "description": "Badge concedido a membros que demonstraram comprometimento e contribuíram significativamente para projetos e missões da FLUXX DAO.",
+  "image": "https://fluxx.space/badges/images/colaborador.png",
+  "external_url": "https://fluxx.space/badges/2",
+  "attributes": [
+    {
+      "trait_type": "Tipo",
+      "value": "Colaborador"
+    },
+    {
+      "trait_type": "Nível",
+      "value": 2
+    },
+    {
+      "trait_type": "Raridade",
+      "value": "Raro"
+    },
+    {
+      "trait_type": "Soulbound",
+      "value": true
+    }
+  ]
+}
+

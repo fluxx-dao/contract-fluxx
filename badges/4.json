@@ -1,0 +1,25 @@
+{
+  "name": "Referral",
+  "description": "Badge concedido a membros que trouxeram novos membros para a FLUXX DAO através do programa de referral, ajudando a expandir a comunidade.",
+  "image": "https://fluxx.space/badges/images/referral.png",
+  "external_url": "https://fluxx.space/badges/4",
+  "attributes": [
+    {
+      "trait_type": "Tipo",
+      "value": "Referral"
+    },
+    {
+      "trait_type": "Nível",
+      "value": 1
+    },
+    {
+      "trait_type": "Raridade",
+      "value": "Comum"
+    },
+    {
+      "trait_type": "Soulbound",
+      "value": true
+    }
+  ]
+}
+

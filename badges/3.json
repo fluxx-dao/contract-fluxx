@@ -1,0 +1,25 @@
+{
+  "name": "Aplicador",
+  "description": "Badge concedido a membros que aplicaram trabalhos e soluções desenvolvidas na FLUXX DAO em projetos reais, demonstrando impacto prático.",
+  "image": "https://fluxx.space/badges/images/aplicador.png",
+  "external_url": "https://fluxx.space/badges/3",
+  "attributes": [
+    {
+      "trait_type": "Tipo",
+      "value": "Aplicador"
+    },
+    {
+      "trait_type": "Nível",
+      "value": 3
+    },
+    {
+      "trait_type": "Raridade",
+      "value": "Épico"
+    },
+    {
+      "trait_type": "Soulbound",
+      "value": true
+    }
+  ]
+}
+

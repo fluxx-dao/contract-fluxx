@@ -1,0 +1,14 @@
+{
+  "network": "polygon",
+  "deployer": "0xB04A61b436cFc40e7Aad7B73b34E47dAd79cc57f",
+  "gnosisSafe": "0xF040BbD411542F09f775E974fA88E16bF7406d26",
+  "contracts": {
+    "treasury": "0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93",
+    "token": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+    "badgeNFT": "0xAba2f3E32C0Fac859e21bC7a8EcAAF173200F7Ce",
+    "governance": "0xaAf07b58b9658f103C9Cac9dbEAE622ED21c2BFa",
+    "membership": "0x52926F509d7BD565c02fbd72265E4F5Dda300099",
+    "collabEngine": "0x3bFB7e43517B0C91F5Bee75FeDd88317Db7C763C"
+  },
+  "timestamp": "2025-11-08T07:47:48.318Z"
+}
