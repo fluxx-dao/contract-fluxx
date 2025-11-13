@@ -108,7 +108,7 @@ MIT
 
 ## 👥 Contribuindo
 
-Este é um projeto de DAO. Para contribuir, entre em contato através das redes sociais ou email: `fluxx-dao.web3@ethermail.io`
+Este é um projeto de DAO. Para contribuir, entre em contato através das redes sociais ou email: `team@fluxx.space`
 
 ---
 
