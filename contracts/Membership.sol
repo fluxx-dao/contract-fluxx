@@ -42,6 +42,8 @@ contract Membership is Ownable, ReentrancyGuard, Pausable {
     mapping(address => address) public fiadorDe; // Quem é o fiador deste membro
     mapping(address => uint256) public contadorFiador; // Quantos indicou
     mapping(address => address[]) public indicadosPor; // Lista de indicados
+    mapping(address => uint256) public stakeDoFiador; // Stake real do fiador (para validação)
+    mapping(address => uint256) public slotsDisponiveis; // Slots de indicação disponíveis (padrão: 5)
     
     uint256 public totalMembers;
     uint256 public totalLobos; // Membros sem fiador
@@ -104,6 +106,8 @@ contract Membership is Ownable, ReentrancyGuard, Pausable {
         isMember[msg.sender] = true;
         memberSince[msg.sender] = block.timestamp;
         fiadorDe[msg.sender] = address(0); // Sem fiador
+        stakeDoFiador[msg.sender] = stakeEmToken; // Registra stake do membro
+        slotsDisponiveis[msg.sender] = MAX_FIANCA; // Inicializa com 5 slots
         totalMembers++;
         totalLobos++;
         
@@ -133,7 +137,17 @@ contract Membership is Ownable, ReentrancyGuard, Pausable {
         require(_fiador != address(0), "Fiador invalido");
         require(_fiador != msg.sender, "Nao pode ser fiador de si mesmo");
         require(isMember[_fiador], "Fiador nao e membro");
-        require(contadorFiador[_fiador] < MAX_FIANCA, "Fiador atingiu limite de 5");
+        require(slotsDisponiveis[_fiador] > 0, "Fiador sem slots disponiveis");
+        
+        // Valida que fiador tem stake suficiente (se registrou via stake, não via fiança)
+        if (fiadorDe[_fiador] == address(0)) {
+            // Fiador é "lobo" (registrou via stake), precisa ter stake mínimo
+            require(
+                stakeDoFiador[_fiador] >= STAKE_LOBO_FIXO || 
+                token.balanceOf(_fiador) >= STAKE_LOBO_FIXO,
+                "Fiador sem stake suficiente"
+            );
+        }
         
         // OPCIONAL: Exigir que fiador tenha badges de impacto
         // require(
@@ -162,10 +176,12 @@ contract Membership is Ownable, ReentrancyGuard, Pausable {
         fiadorDe[msg.sender] = _fiador;
         contadorFiador[_fiador]++;
         indicadosPor[_fiador].push(msg.sender);
+        slotsDisponiveis[_fiador]--; // Consome 1 slot do fiador
         
         // Registra membro
         isMember[msg.sender] = true;
         memberSince[msg.sender] = block.timestamp;
+        slotsDisponiveis[msg.sender] = MAX_FIANCA; // Novo membro também tem 5 slots
         totalMembers++;
         totalIndicados++;
         
@@ -198,7 +214,7 @@ contract Membership is Ownable, ReentrancyGuard, Pausable {
     
     - @dev Consulta stake atual em $FLUXX para cada rota (Preço Fixo v0.5.1)
     */
-    function getStakeRequirements() external view returns (
+    function getStakeRequirements() external pure returns (
     uint256 FLUXXEmToken,
     uint256 socialEmToken,
     uint256 precoTokenUSD
@@ -223,14 +239,22 @@ contract Membership is Ownable, ReentrancyGuard, Pausable {
         
         address fiador = fiadorDe[_infrator];
         if (fiador != address(0)) {
-        // Penalidade: Remove 1 do contador (impede novas indicações temporariamente)
-        if (contadorFiador[fiador] > 0) {
-        contadorFiador[fiador]--;
+        // Penalidade: Remove 1 slot disponível (impede novas indicações)
+        if (slotsDisponiveis[fiador] > 0) {
+        slotsDisponiveis[fiador]--;
         }
         
-        emit FiadorPenalizado(fiador, _infrator, 1);
+        // Reduz stake do fiador (penalidade de 10% do stake mínimo)
+        uint256 penalidade = STAKE_SOCIAL_FIXO / 10; // 10 FLUXX (10% de 100)
+        if (stakeDoFiador[fiador] >= penalidade) {
+            stakeDoFiador[fiador] -= penalidade;
+        } else {
+            stakeDoFiador[fiador] = 0;
+        }
         
-        // FUTURO: Penalidades mais severas (queimar badges, remover stake)
+        emit FiadorPenalizado(fiador, _infrator, penalidade);
+        
+        // FUTURO: Penalidades mais severas (queimar badges, remover stake do Treasury)
         }
         }
         

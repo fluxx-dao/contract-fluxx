@@ -6,11 +6,11 @@ Este guia contém **TODAS as informações necessárias** para preencher o formu
 
 **Link do Formulário**: https://polygonscan.com/tokenupdate/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
 
-⚠️ **IMPORTANTE**: O formulário completo deve ser acessado pela **página do Token**, não pela página do contrato:
-- ✅ **Correto**: https://polygonscan.com/token/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
-- ❌ **Incorreto**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+⚠️ **IMPORTANTE**: O formulário completo pode ser acessado de **AMBAS as páginas**:
+- ✅ **Página do Token**: https://polygonscan.com/token/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+- ✅ **Página do Contrato**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
 
-Na página do token, procure por **"Update Token Info"** ou **"More Options"** → **"Update Token Info"**.
+**Ambas funcionam!** Use a que você preferir. Procure por **"Update Token Info"** ou **"More Options"** → **"Update Token Info"** em qualquer uma das páginas.
 
 ---
 

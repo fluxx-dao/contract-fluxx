@@ -53,6 +53,9 @@ contract CollabEngine is ReentrancyGuard {
     uint256 public constant BADGE_ID_COLABORADOR = 2;
     uint256 public constant BADGE_ID_APLICADOR = 3;
     
+    // Timeout para missões travadas
+    uint256 public constant TIMEOUT_MISSAO = 14 days;
+    
     event MissaoCriada(
     uint256 indexed missaoId,
     address indexed demandante,
@@ -65,6 +68,7 @@ contract CollabEngine is ReentrancyGuard {
     event MissaoAplicada(uint256 indexed missaoId, string urlAplicacao);
     event MissaoConcluida(uint256 indexed missaoId);
     event MissaoCancelada(uint256 indexed missaoId);
+    event MissaoTimeout(uint256 indexed missaoId);
     
     constructor(
     address _token,
@@ -188,6 +192,7 @@ contract CollabEngine is ReentrancyGuard {
     Missao storage missao = missoes[_missaoId];
         
         require(msg.sender == missao.demandante, "Nao e o demandante");
+        require(membership.isMember(msg.sender), "Demandante nao e mais membro");
         require(missao.estado == EstadoMissao.Aprovada, "Missao nao aprovada");
         require(bytes(_urlAplicacao).length > 0, "URL vazia");
         
@@ -234,6 +239,33 @@ contract CollabEngine is ReentrancyGuard {
         
         emit MissaoCancelada(_missaoId);
         }
+    
+    /**
+    
+    - @dev Cancela missão por timeout (se colaborador não entregou)
+    - @param _missaoId ID da missão
+    - Qualquer um pode chamar (melhor UX - permite que comunidade ajude)
+    */
+    function cancelarMissaoTimeout(uint256 _missaoId) external nonReentrant {
+        Missao storage missao = missoes[_missaoId];
+        
+        require(missao.estado == EstadoMissao.EmProgresso, "Estado invalido");
+        require(
+            block.timestamp >= missao.criadaEm + TIMEOUT_MISSAO,
+            "Timeout nao atingido"
+        );
+        
+        missao.estado = EstadoMissao.Cancelada;
+        
+        // Devolve recompensa ao demandante
+        require(
+            token.transfer(missao.demandante, missao.recompensa),
+            "Devolucao falhou"
+        );
+        
+        emit MissaoTimeout(_missaoId);
+        emit MissaoCancelada(_missaoId);
+    }
         
     
     /**

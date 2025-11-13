@@ -1,25 +1,23 @@
 {
   "name": "Aplicador",
-  "description": "Badge concedido a membros que aplicaram trabalhos e soluções desenvolvidas na FLUXX DAO em projetos reais, demonstrando impacto prático.",
-  "image": "https://fluxx.space/badges/images/aplicador.png",
-  "external_url": "https://fluxx.space/badges/3",
+  "description": "Badge de aplicador da FLUXX DAO. Conquistado ao provar aplicação de valor entregue em missões.",
+  "image": "https://ivory-payable-wolverine-982.mypinata.cloud/ipfs/bafybeia6cxtgfextwcs4jozaenkigd2ivlemv5crt2wxvzndvzz3xwhkyy",
   "attributes": [
     {
       "trait_type": "Tipo",
       "value": "Aplicador"
     },
     {
-      "trait_type": "Nível",
-      "value": 3
+      "trait_type": "ID",
+      "value": "3"
     },
     {
-      "trait_type": "Raridade",
-      "value": "Épico"
+      "trait_type": "Peso de Voto",
+      "value": "3"
     },
     {
       "trait_type": "Soulbound",
-      "value": true
+      "value": "true"
     }
   ]
 }
-

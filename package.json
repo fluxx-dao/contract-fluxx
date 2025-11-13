@@ -21,6 +21,6 @@
   },
   "optionalDependencies": {
     "@safe-global/safe-core-sdk": "^3.3.5",
-    "@safe-global/safe-ethers-lib": "^3.0.0"
+    "@safe-global/safe-ethers-lib": "npm:null@^3.0.0"
   }
 }

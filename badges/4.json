@@ -1,25 +1,23 @@
 {
   "name": "Referral",
-  "description": "Badge concedido a membros que trouxeram novos membros para a FLUXX DAO através do programa de referral, ajudando a expandir a comunidade.",
-  "image": "https://fluxx.space/badges/images/referral.png",
-  "external_url": "https://fluxx.space/badges/4",
+  "description": "Badge de referral da FLUXX DAO. Conquistado ao indicar novos membros para a comunidade.",
+  "image": "https://ivory-payable-wolverine-982.mypinata.cloud/ipfs/bafybeifqeputhgtz3tmreua4qmrr4dxocl7pxmpn7kmvjm5bmbwj7mprga",
   "attributes": [
     {
       "trait_type": "Tipo",
       "value": "Referral"
     },
     {
-      "trait_type": "Nível",
-      "value": 1
+      "trait_type": "ID",
+      "value": "4"
     },
     {
-      "trait_type": "Raridade",
-      "value": "Comum"
+      "trait_type": "Peso de Voto",
+      "value": "0"
     },
     {
       "trait_type": "Soulbound",
-      "value": true
+      "value": "true"
     }
   ]
 }
-

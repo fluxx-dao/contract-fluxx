@@ -5,14 +5,22 @@ const { ethers } = require("ethers");
 let Safe, EthersAdapter;
 try {
   const safeCoreSdk = require("@safe-global/safe-core-sdk");
-  const safeEthersLib = require("@safe-global/safe-ethers-lib");
   
-  // A versão 3.x exporta Safe como default
-  Safe = safeCoreSdk.default || safeCoreSdk;
-  EthersAdapter = safeEthersLib.EthersAdapter || safeEthersLib.default?.EthersAdapter || safeEthersLib;
+  // Na versão 3.x, Safe é exportado como default ou nomeado
+  Safe = safeCoreSdk.default || safeCoreSdk.Safe || safeCoreSdk;
   
-  // Verificar se realmente conseguiu importar
-  if (!Safe || !EthersAdapter) {
+  // EthersAdapter pode estar em safe-ethers-lib ou ser necessário criar manualmente
+  try {
+    const safeEthersLib = require("@safe-global/safe-ethers-lib");
+    EthersAdapter = safeEthersLib.EthersAdapter || safeEthersLib.default?.EthersAdapter || safeEthersLib;
+  } catch (e) {
+    // Se safe-ethers-lib não estiver disponível, criar adapter manualmente
+    console.warn("⚠️  safe-ethers-lib não encontrado, tentando criar adapter manualmente...");
+    EthersAdapter = null;
+  }
+  
+  // Verificar se realmente conseguiu importar Safe
+  if (!Safe) {
     throw new Error("Não foi possível importar Safe SDK");
   }
 } catch (error) {
@@ -32,27 +40,29 @@ try {
  * 3. O Safe precisa ter POL para pagar gas
  */
 
-const BADGE_NFT_ADDRESS = "0xAba2f3E32C0Fac859e21bC7a8EcAAF173200F7Ce";
-const GNOSIS_SAFE_ADDRESS = "0xF040BbD411542F09f775E974fA88E16bF7406d26";
+// Endereços atualizados (v0.5.1+)
+const deploymentInfo = require("../deployment-info.json");
+const BADGE_NFT_ADDRESS = deploymentInfo.contracts.badgeNFT;
+const GNOSIS_SAFE_ADDRESS = deploymentInfo.gnosisSafe;
 
-// IDs dos Badges e novas URIs
+// IDs dos Badges e novas URIs IPFS
 const BADGE_UPDATES = [
-  { id: 1, uri: "https://fluxx.space/badges/1.json" },
-  { id: 2, uri: "https://fluxx.space/badges/2.json" },
-  { id: 3, uri: "https://fluxx.space/badges/3.json" },
-  { id: 4, uri: "https://fluxx.space/badges/4.json" }
+  { id: 1, name: "Membro Ativo", uri: "ipfs://bafkreifx3oyygr5ektwwne2zy23boefcaj3b56t2gmqed42zxpmnq56xpe" },
+  { id: 2, name: "Colaborador", uri: "ipfs://bafkreibodhsmtbebgpyxynje57obt3udfrfpi2u7uogw6u5t5fjelilgrq" },
+  { id: 3, name: "Aplicador", uri: "ipfs://bafkreih6oh6cvac77xkfylrcuqigr5xvjubz6mvb7hqzspsfh7ealydpvy" },
+  { id: 4, name: "Referral", uri: "ipfs://bafkreibxdzvgubsjbqp6yttc5qend7pmrbubildomlhxaa2qskiagjamci" }
 ];
 
 async function main() {
   console.log("🔧 Atualizando Badge URIs via Gnosis Safe (CLI)...\n");
   
   // Verificar se Safe SDK está instalado
-  if (!Safe || !EthersAdapter) {
+  if (!Safe) {
     console.error("❌ Safe SDK não está instalado!\n");
     console.error("📦 Para instalar:");
-    console.error("   npm install @safe-global/safe-core-sdk @safe-global/safe-ethers-lib\n");
+    console.error("   npm install @safe-global/safe-core-sdk\n");
     console.error("💡 Alternativa: Use o método manual via Safe Web App");
-    console.error("   Veja: GUIA_EXECUTAR_SAFE_BADGE_URIS.md\n");
+    console.error("   Importe o arquivo: badge-uris-transactions.json\n");
     process.exit(1);
   }
   
@@ -72,10 +82,27 @@ async function main() {
   
   try {
     // Criar adapter do Safe
-    const ethAdapter = new EthersAdapter({
-      ethers,
-      signerOrProvider: signer
-    });
+    let ethAdapter;
+    if (EthersAdapter && typeof EthersAdapter === 'function') {
+      ethAdapter = new EthersAdapter({
+        ethers,
+        signerOrProvider: signer
+      });
+    } else if (!EthersAdapter) {
+      // Se EthersAdapter não estiver disponível, criar manualmente
+      console.log("ℹ️  Criando EthersAdapter manualmente...\n");
+      const EthersAdapterManual = require("@safe-global/safe-ethers-lib").EthersAdapter;
+      if (EthersAdapterManual) {
+        ethAdapter = new EthersAdapterManual({
+          ethers,
+          signerOrProvider: signer
+        });
+      } else {
+        throw new Error("Não foi possível criar EthersAdapter. Instale: npm install @safe-global/safe-ethers-lib");
+      }
+    } else {
+      ethAdapter = EthersAdapter;
+    }
     
     // Criar instância do Safe
     const safeSdk = await Safe.init({
@@ -100,10 +127,10 @@ async function main() {
     console.log("📋 Criando transações...\n");
     const safeTransactions = [];
     
-    for (const { id, uri } of BADGE_UPDATES) {
-      const currentURI = await BadgeNFT.uri(id);
-      console.log(`Badge ID ${id}:`);
-      console.log(`  URI atual: ${currentURI}`);
+    for (const { id, name, uri } of BADGE_UPDATES) {
+      const currentURI = await BadgeNFT.badgeURIs(id);
+      console.log(`Badge ID ${id} (${name}):`);
+      console.log(`  URI atual: ${currentURI || "Não configurado"}`);
       console.log(`  Nova URI:  ${uri}`);
       
       // Criar calldata para setBadgeURI

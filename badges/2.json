@@ -1,25 +1,23 @@
 {
   "name": "Colaborador",
-  "description": "Badge concedido a membros que demonstraram comprometimento e contribuíram significativamente para projetos e missões da FLUXX DAO.",
-  "image": "https://fluxx.space/badges/images/colaborador.png",
-  "external_url": "https://fluxx.space/badges/2",
+  "description": "Badge de colaborador da FLUXX DAO. Conquistado ao aceitar e entregar missões com sucesso.",
+  "image": "https://ivory-payable-wolverine-982.mypinata.cloud/ipfs/bafybeigvddikkq3n45i6w3cb2s46huqjf6apybt3wan6247q3tzx5644gm",
   "attributes": [
     {
       "trait_type": "Tipo",
       "value": "Colaborador"
     },
     {
-      "trait_type": "Nível",
-      "value": 2
+      "trait_type": "ID",
+      "value": "2"
     },
     {
-      "trait_type": "Raridade",
-      "value": "Raro"
+      "trait_type": "Peso de Voto",
+      "value": "2"
     },
     {
       "trait_type": "Soulbound",
-      "value": true
+      "value": "true"
     }
   ]
 }
-

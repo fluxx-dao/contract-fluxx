@@ -1,7 +1,15 @@
 const hre = require("hardhat");
 
 /**
- * 🚀 DEPLOY FLUXX DAO - Polygon Mainnet
+ * 🚀 DEPLOY FLUXX DAO v0.5.1+ - Polygon Mainnet
+ * 
+ * ✅ VERSÃO COM MELHORIAS DE SEGURANÇA:
+ * - Timelock de 2 dias no Treasury
+ * - Quorum proporcional no Governance (20%)
+ * - Validação de membership em funções críticas
+ * - Timeout para missões travadas (14 dias)
+ * - Sistema de fiança melhorado
+ * - Política de burn de badges controlada
  * 
  * ⚠️  IMPORTANTE: Antes de fazer deploy:
  * 1. Crie um Gnosis Safe na Polygon (https://app.safe.global/)
@@ -10,12 +18,12 @@ const hre = require("hardhat");
  * 4. Tenha pelo menos 5-10 POL na wallet de deploy (token nativo da Polygon PoS)
  * 
  * 📋 Ordem de Deploy:
- * 1. Treasury (precisa do Safe como owner)
+ * 1. Treasury (precisa do Safe como owner) - COM TIMELOCK
  * 2. Token (precisa do Safe como owner + Treasury para mint inicial)
- * 3. BadgeNFT (precisa do Safe como owner)
- * 4. Governance (precisa do Safe como owner + BadgeNFT + Treasury)
- * 5. Membership (precisa do Safe como owner + Token + BadgeNFT + Treasury)
- * 6. CollabEngine (não precisa owner, mas precisa Token + Membership + BadgeNFT)
+ * 3. BadgeNFT (precisa do Safe como owner) - COM SISTEMA DE BURN
+ * 4. Governance (precisa do Safe como owner + BadgeNFT + Treasury) - COM QUORUM PROPORCIONAL
+ * 5. Membership (precisa do Safe como owner + Token + BadgeNFT + Treasury) - COM VALIDAÇÃO DE FIADOR
+ * 6. CollabEngine (não precisa owner, mas precisa Token + Membership + BadgeNFT) - COM TIMEOUT
  */
 
 async function main() {
@@ -167,8 +175,45 @@ async function main() {
   console.log("   Parâmetro:", collabEngineAddress);
   console.log("   Execute via Safe:", badgeNFTAddress, "\n");
 
+  // 7.4 BadgeNFT: Autorizar Governance como burner (para punições)
+  console.log("6. BadgeNFT.authorizeBurner(Governance)");
+  console.log("   Contrato: BadgeNFT");
+  console.log("   Função: authorizeBurner");
+  console.log("   Parâmetro:", governanceAddress);
+  console.log("   Execute via Safe:", badgeNFTAddress);
+  console.log("   ⚠️  IMPORTANTE: Permite que Governance queime badges em punições\n");
+
+  // 7.5 Governance: Configurar quorum proporcional (opcional - já tem default de 20%)
+  console.log("7. Governance.atualizarParametros() [OPCIONAL]");
+  console.log("   Contrato: Governance");
+  console.log("   Função: atualizarParametros");
+  console.log("   Parâmetros:");
+  console.log("     - duracaoVotacao: 259200 (3 dias em segundos)");
+  console.log("     - quorumMinimo: 10 (fallback mínimo)");
+  console.log("   Nota: quorumPercentual já está em 20% por padrão");
+  console.log("   Execute via Safe:", governanceAddress, "\n");
+
   // ============================================
-  // 8. RESUMO FINAL
+  // 8. VERIFICAÇÕES PÓS-DEPLOY
+  // ============================================
+  console.log("🔍 Verificações pós-deploy:\n");
+  
+  // Verificar Timelock no Treasury
+  const timelockDelay = await treasury.TIMELOCK_DELAY();
+  console.log("✅ Treasury Timelock:", hre.ethers.formatUnits(timelockDelay, 0) / 86400, "dias");
+  
+  // Verificar Quorum no Governance
+  const quorumPercentual = await governance.quorumPercentual();
+  console.log("✅ Governance Quorum Percentual:", quorumPercentual.toString(), "%");
+  
+  // Verificar Timeout no CollabEngine
+  const timeoutMissao = await collabEngine.TIMEOUT_MISSAO();
+  console.log("✅ CollabEngine Timeout:", hre.ethers.formatUnits(timeoutMissao, 0) / 86400, "dias");
+  
+  console.log("\n");
+
+  // ============================================
+  // 9. RESUMO FINAL
   // ============================================
   console.log("=".repeat(60));
   console.log("✅ DEPLOY CONCLUÍDO!");
@@ -183,9 +228,20 @@ async function main() {
   console.log("\n🛡️  Owner (Gnosis Safe):", GNOSIS_SAFE_ADDRESS);
   console.log("\n⚠️  PRÓXIMOS PASSOS:");
   console.log("1. Acesse o Gnosis Safe:", "https://app.safe.global/");
-  console.log("2. Execute as 5 configurações listadas acima");
+  console.log("2. Execute as 7 configurações listadas acima");
   console.log("3. Verifique os contratos no PolygonScan");
-  console.log("4. Teste as funções básicas\n");
+  console.log("4. Teste as funções básicas");
+  console.log("5. ⚠️  IMPORTANTE: Use withdrawTokensByOwner() para distribuição inicial");
+  console.log("   (Função sem timelock, apenas para owner/Safe)");
+  console.log("6. Após configurar Governance, use queueWithdrawal() + executeWithdrawal()");
+  console.log("   (Sistema com timelock de 2 dias)\n");
+  
+  console.log("📚 NOVAS FUNCIONALIDADES:");
+  console.log("   ✅ Timelock: Saques via Governance requerem 2 dias de espera");
+  console.log("   ✅ Quorum Proporcional: 20% dos votantes elegíveis");
+  console.log("   ✅ Timeout Missões: Cancelamento automático após 14 dias");
+  console.log("   ✅ Validação Fiador: Verifica stake do fiador");
+  console.log("   ✅ Burn Controlado: Apenas authorizedBurner pode queimar badges\n");
 
   // Salvar endereços em arquivo (opcional)
   const deploymentInfo = {

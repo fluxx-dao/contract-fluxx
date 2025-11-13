@@ -59,9 +59,11 @@ constructor(
 ## 📋 Checklist de Deploy Atualizado
 
 ### ✅ Removido do Checklist:
+
 - ~~[ ] Endereço do Chainlink Price Feed (FLUXX/USD) preparado~~
 
 ### ✅ Adicionado ao Checklist:
+
 - [ ] **NOTA v0.5.1:** Membership usa **Preço Fixo de Fundação** ($0.10 por FLUXX)
 - [ ] Oracle Chainlink será implementado na v0.5.2 **após** liquidez de mercado
 - [ ] Não é necessário configurar Chainlink Price Feed para o deploy inicial

@@ -21,12 +21,18 @@ contract BadgeNFT is ERC1155, Ownable {
     // Apenas contratos autorizados podem mintar
     mapping(address => bool) public authorizedMinter;
     
+    // Apenas owner pode queimar badges (para punições)
+    mapping(address => bool) public authorizedBurner;
+    
     // Metadados dos badges (opcional, para front-end)
     mapping(uint256 => string) public badgeURIs;
     
     event MinterAuthorized(address indexed minter);
     event MinterRevoked(address indexed minter);
+    event BurnerAuthorized(address indexed burner);
+    event BurnerRevoked(address indexed burner);
     event BadgeURISet(uint256 indexed badgeId, string uri);
+    event BadgeBurned(address indexed account, uint256 indexed badgeId, uint256 amount);
     
     constructor(
     address initialOwner,
@@ -95,9 +101,46 @@ contract BadgeNFT is ERC1155, Ownable {
     
     /**
     
+    - @dev Autoriza um endereço a queimar badges (para punições)
+    - @param burner Endereço autorizado (ex: Governance, DisputeEngine)
+    */
+    function authorizeBurner(address burner) external onlyOwner {
+        require(burner != address(0), "Endereco invalido");
+        authorizedBurner[burner] = true;
+        emit BurnerAuthorized(burner);
+    }
+    
+    /**
+    
+    - @dev Revoga autorização de burn
+    */
+    function revokeBurner(address burner) external onlyOwner {
+        authorizedBurner[burner] = false;
+        emit BurnerRevoked(burner);
+    }
+    
+    /**
+    
+    - @dev Queima badges de um usuário (apenas autorizado)
+    - @param account Endereço do usuário
+    - @param badgeId ID do Badge
+    - @param amount Quantidade a queimar
+    */
+    function burn(address account, uint256 badgeId, uint256 amount) external {
+        require(authorizedBurner[msg.sender] || msg.sender == owner(), "Nao autorizado a queimar");
+        require(account != address(0), "Endereco invalido");
+        require(amount > 0, "Quantidade invalida");
+        
+        _burn(account, badgeId, amount);
+        emit BadgeBurned(account, badgeId, amount);
+    }
+    
+    /**
+    
     - @dev LÓGICA SOULBOUND: Bloqueia todas as transferências
     - Badges só podem ser mintados (from == address(0))
-    - Nunca podem ser transferidos
+    - Badges podem ser queimados apenas por authorizedBurner (to == address(0))
+    - Nunca podem ser transferidos entre usuários
     */
     function _update(
     address from,
@@ -106,10 +149,11 @@ contract BadgeNFT is ERC1155, Ownable {
     uint256[] memory values
     ) internal virtual override {
     // Permite MINT (from == address(0))
-    // Permite BURN (to == address(0)) - opcional
+    // Permite BURN apenas se authorizedBurner (to == address(0) && authorizedBurner[msg.sender])
     // BLOQUEIA todas as transferências normais
     require(
-    from == address(0) || to == address(0),
+    from == address(0) || 
+    (to == address(0) && (authorizedBurner[msg.sender] || msg.sender == owner())),
     "Badges sao Soulbound: nao transferiveis"
     );
         

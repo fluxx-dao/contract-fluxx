@@ -8,35 +8,47 @@
 
 ---
 
+## ✅ Importante: Ambas as Páginas Funcionam!
+
+⚠️ **O formulário pode ser acessado de AMBAS as páginas**:
+- ✅ **Página do Token**: https://polygonscan.com/token/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+- ✅ **Página do Contrato**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+
+**Se você já enviou o formulário pela página do contrato e foi aceito, está tudo certo!** Não precisa fazer nada diferente. Ambas as páginas levam ao mesmo formulário e têm o mesmo resultado.
+
+---
+
 ## 🔐 Como Assinar a Mensagem via Gnosis Safe
 
 Como o owner do contrato é o **Gnosis Safe**, você precisa assinar a mensagem usando o Safe, não uma wallet individual.
 
 ### Opção 1: Via Interface do PolygonScan (Mais Simples)
 
-1. **Acesse a PÁGINA DO TOKEN no PolygonScan** (não a página do contrato):
-   - ✅ **Correto**: https://polygonscan.com/token/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
-   - ❌ **Incorreto**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+⚠️ **IMPORTANTE**: O formulário pode ser acessado de **AMBAS as páginas**:
+- ✅ **Página do Token**: https://polygonscan.com/token/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+- ✅ **Página do Contrato**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
 
-2. **Na página do token, procure por:**
+**Ambas funcionam!** Use a que você preferir ou onde encontrar o botão.
+
+1. **Acesse qualquer uma das páginas acima**
+
+2. **Procure por:**
    - **"More Options"** → **"Update Token Info"**
    - Ou **"Update Token Logo"**
    - Ou um botão **"Update Token Info"** na parte superior da página
+   - Ou na página do contrato: **"Contract"** → **"More Options"** → **"Update Token Info"**
 
-3. **Se não encontrar na página do token, tente:**
-   - Na página do token, vá em **"Contract"** → **"More Options"** → **"Update Token Info"**
-
-4. **Se pedir para assinar:**
+3. **Se pedir para assinar:**
    - Conecte sua wallet que é signatária do Gnosis Safe
    - A mensagem será: `I, hereby verify that I am the owner/creator of the address [0xB1430cc106bd664F68BE8d0167A52a29654CF8BA]`
    - Assine com sua wallet (que é signatária do Safe)
 
-5. **Cole a URL da imagem:**
+4. **Cole a URL da imagem:**
    ```
    https://gateway.lighthouse.storage/ipfs/bafkreicncteu57sjmxa4awtfvfal65hfr7oy5lx2zd35evqc2a2pkkcwe4
    ```
 
-6. **Envie e aguarde confirmação**
+5. **Envie e aguarde confirmação**
 
 ---
 
@@ -85,7 +97,12 @@ Se o PolygonScan pedir assinatura de mensagem:
 
 ### 1. Acessar o PolygonScan
 
-1. Vá para: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+1. Vá para qualquer uma das páginas:
+   - **Página do Token**: https://polygonscan.com/token/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+   - **Página do Contrato**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+   
+   ⚠️ **Ambas funcionam!** O formulário está disponível em ambas.
+   
 2. Faça login na sua conta PolygonScan (se não tiver, crie uma)
 
 ### 2. Encontrar a Opção de Atualizar Logo

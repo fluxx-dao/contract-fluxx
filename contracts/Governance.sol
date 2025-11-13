@@ -5,7 +5,8 @@ import "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 interface ITreasury {
-function withdrawTokens(address tokenAddress, uint256 amount, address to) external;
+function queueWithdrawal(address tokenAddress, uint256 amount, address to) external returns (bytes32);
+function executeWithdrawal(bytes32 txHash, address tokenAddress, uint256 amount, address to) external;
 function withdrawEther(uint256 amount, address payable to) external;
 }
 
@@ -40,7 +41,8 @@ contract Governance is Ownable {
     address proponente;
     ProposalType tipo;
     string descricao;
-    address alvo; // Para saque: endereço do token ou destinatário
+    address alvo; // Para saque: endereço do token
+    address destinatario; // Para saque: endereço do destinatário
     uint256 valor;
     ProposalState estado;
     uint256 votosFavor;
@@ -55,7 +57,8 @@ contract Governance is Ownable {
     
     // Parâmetros de governança
     uint256 public duracaoVotacao = 3 days;
-    uint256 public quorumMinimo = 10; // Mínimo de votos totais
+    uint256 public quorumMinimo = 10; // DEPRECATED - usar quorumPercentual
+    uint256 public quorumPercentual = 20; // 20% dos votantes elegíveis
     
     // IDs dos Badges para calcular poder de voto
     uint256 public constant BADGE_ID_MEMBRO_ATIVO = 1;
@@ -118,6 +121,45 @@ contract Governance is Ownable {
         
         return poderVoto;
         }
+    
+    /**
+    
+    - @dev Calcula poder de voto usando balanceOfBatch (otimizado)
+    - @param account Endereço do votante
+    */
+    function getVotesBatch(address account) public view returns (uint256) {
+        address[] memory accounts = new address[](3);
+        accounts[0] = account;
+        accounts[1] = account;
+        accounts[2] = account;
+        
+        uint256[] memory ids = new uint256[](3);
+        ids[0] = BADGE_ID_MEMBRO_ATIVO;
+        ids[1] = BADGE_ID_COLABORADOR;
+        ids[2] = BADGE_ID_APLICADOR;
+        
+        uint256[] memory balances = badgeNFT.balanceOfBatch(accounts, ids);
+        
+        uint256 poderVoto = 0;
+        if (balances[0] > 0) {
+            poderVoto += PESO_MEMBRO;
+        }
+        poderVoto += balances[1] * PESO_COLABORADOR;
+        poderVoto += balances[2] * PESO_APLICADOR;
+        
+        return poderVoto;
+    }
+    
+    /**
+    
+    - @dev Calcula total de votantes elegíveis (membros com badges)
+    */
+    function _calcularTotalVotantesElegiveis() internal view returns (uint256) {
+        // Esta função precisa ser implementada com base na lógica de membros
+        // Por enquanto, retorna quorumMinimo como fallback
+        // TODO: Implementar contagem real de membros elegíveis
+        return quorumMinimo * 5; // Estimativa: 5x o quorum mínimo
+    }
         
     
     /**
@@ -132,6 +174,7 @@ contract Governance is Ownable {
     ) external returns (uint256) {
     require(getVotes(msg.sender) > 0, "Sem poder de voto");
     require(bytes(_descricao).length > 0, "Descricao vazia");
+    require(_destinatario != address(0), "Destinatario invalido");
         
         uint256 proposalId = proposalIdCounter++;
         Proposal storage novaProposta = propostas[proposalId];
@@ -141,6 +184,7 @@ contract Governance is Ownable {
         novaProposta.tipo = ProposalType.SacarTokens;
         novaProposta.descricao = _descricao;
         novaProposta.alvo = _tokenAddress;
+        novaProposta.destinatario = _destinatario;
         novaProposta.valor = _valor;
         novaProposta.estado = ProposalState.Ativa;
         novaProposta.criadaEm = block.timestamp;
@@ -191,7 +235,18 @@ contract Governance is Ownable {
         require(block.timestamp >= proposta.encerraEm, "Votacao ainda aberta");
         
         uint256 totalVotos = proposta.votosFavor + proposta.votosContra;
-        require(totalVotos >= quorumMinimo, "Quorum nao atingido");
+        
+        // Quorum proporcional (20% dos votantes elegíveis)
+        uint256 totalVotantesElegiveis = _calcularTotalVotantesElegiveis();
+        uint256 quorumNecessario = (totalVotantesElegiveis * quorumPercentual) / 100;
+        
+        // Fallback para quorum mínimo absoluto (para início da DAO)
+        uint256 quorumMinimoAbsoluto = quorumMinimo;
+        if (quorumNecessario < quorumMinimoAbsoluto) {
+            quorumNecessario = quorumMinimoAbsoluto;
+        }
+        
+        require(totalVotos >= quorumNecessario, "Quorum nao atingido");
         
         if (proposta.votosFavor > proposta.votosContra) {
         proposta.estado = ProposalState.Aprovada;
@@ -204,7 +259,7 @@ contract Governance is Ownable {
     
     /**
     
-    - @dev Executa proposta aprovada
+    - @dev Executa proposta aprovada (agora com timelock)
     */
     function executarProposta(uint256 _proposalId) internal {
     Proposal storage proposta = propostas[_proposalId];
@@ -212,11 +267,13 @@ contract Governance is Ownable {
         require(proposta.estado == ProposalState.Aprovada, "Nao aprovada");
         
         if (proposta.tipo == ProposalType.SacarTokens) {
-        treasury.withdrawTokens(
-        proposta.alvo,
-        proposta.valor,
-        proposta.proponente
+        // Usa o novo sistema de timelock
+        treasury.queueWithdrawal(
+        proposta.alvo, // tokenAddress
+        proposta.valor, // amount
+        proposta.destinatario // to
         );
+        // Nota: A execução real acontece após 2 dias via executeWithdrawal
         }
         
         proposta.estado = ProposalState.Executada;

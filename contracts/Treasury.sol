@@ -14,10 +14,15 @@ contract Treasury is Ownable {
     
     address public governanceContract;
     
+    // Timelock para saques
+    uint256 public constant TIMELOCK_DELAY = 2 days;
+    mapping(bytes32 => uint256) public timelockQueue;
+    
     event GovernanceSet(address indexed governance);
     event TokensWithdrawn(address indexed token, address indexed to, uint256 amount);
     event EtherWithdrawn(address indexed to, uint256 amount);
     event FundsReceived(address indexed from, uint256 amount);
+    event WithdrawalQueued(bytes32 indexed txHash, address indexed token, address indexed to, uint256 amount, uint256 executeAfter);
     
     modifier onlyGovernance() {
         require(msg.sender == governanceContract, "So a governanca");
@@ -39,17 +44,73 @@ contract Treasury is Ownable {
     
     /**
      *
-     * @dev Saca tokens ERC20 do cofre
+     * @dev Enfileira saque de tokens (com timelock)
      * @param tokenAddress Endereço do token
      * @param amount Quantidade
      * @param to Destinatário
-     * CRÍTICO: Apenas Governance pode chamar
+     * @return txHash Hash da transação enfileirada
      */
-    function withdrawTokens(
+    function queueWithdrawal(
+        address tokenAddress,
+        uint256 amount,
+        address to
+    ) external onlyGovernance returns (bytes32) {
+        require(to != address(0), "Endereco invalido");
+        require(amount > 0, "Quantidade invalida");
+        
+        bytes32 txHash = keccak256(abi.encodePacked(tokenAddress, amount, to, block.timestamp));
+        uint256 executeAfter = block.timestamp + TIMELOCK_DELAY;
+        
+        timelockQueue[txHash] = executeAfter;
+        emit WithdrawalQueued(txHash, tokenAddress, to, amount, executeAfter);
+        
+        return txHash;
+    }
+    
+    /**
+     *
+     * @dev Executa saque de tokens após timelock
+     * @param txHash Hash da transação enfileirada
+     * @param tokenAddress Endereço do token
+     * @param amount Quantidade
+     * @param to Destinatário
+     */
+    function executeWithdrawal(
+        bytes32 txHash,
         address tokenAddress,
         uint256 amount,
         address to
     ) external onlyGovernance {
+        require(timelockQueue[txHash] != 0, "Transacao nao enfileirada");
+        require(block.timestamp >= timelockQueue[txHash], "Timelock ainda ativo");
+        
+        // Verifica que os parâmetros correspondem ao hash
+        bytes32 expectedHash = keccak256(abi.encodePacked(tokenAddress, amount, to, timelockQueue[txHash] - TIMELOCK_DELAY));
+        require(txHash == expectedHash, "Parametros nao correspondem");
+        
+        delete timelockQueue[txHash];
+        
+        IERC20 token = IERC20(tokenAddress);
+        require(token.balanceOf(address(this)) >= amount, "Saldo insuficiente");
+        
+        require(token.transfer(to, amount), "Transferencia falhou");
+        emit TokensWithdrawn(tokenAddress, to, amount);
+    }
+    
+    
+    /**
+     *
+     * @dev Saca tokens ERC20 do cofre (apenas owner)
+     * @param tokenAddress Endereço do token
+     * @param amount Quantidade
+     * @param to Destinatário
+     * CRÍTICO: Apenas Owner pode chamar (para distribuição inicial)
+     */
+    function withdrawTokensByOwner(
+        address tokenAddress,
+        uint256 amount,
+        address to
+    ) external onlyOwner {
         require(to != address(0), "Endereco invalido");
         require(amount > 0, "Quantidade invalida");
         

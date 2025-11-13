@@ -16,6 +16,8 @@ Antes de começar, certifique-se de ter:
 - [ ] **Fundadores têm POL** para pagar gas
 - [ ] **Pelo menos 3 fundadores** prontos para testar
 
+> 📋 **Guia de Verificação:** Use `VERIFICAR_PRE_REQUISITOS.md` para verificar cada item passo a passo antes de começar.
+
 ---
 
 ## 📋 ETAPA 1: A IGNIÇÃO DOS MEMBROS (O PORTÃO)

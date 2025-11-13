@@ -1,0 +1,112 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": "2025-11-13T05:02:43.186Z",
+  "meta": {
+    "name": "Configurar Badge URIs",
+    "description": "Configurar URIs dos metadados JSON dos badges no BadgeNFT",
+    "txBuilderVersion": "1.16.2"
+  },
+  "transactions": [
+    {
+      "to": "0xC25F373B2535F49Ca474dE76EfC9688e06d668Fd",
+      "value": "0",
+      "data": "0x65fb1ee2000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000042697066733a2f2f6261666b7265696678336f7979677235656b7477776e65327a793233626f656663616a336235367432676d71656434327a78706d6e713536787065000000000000000000000000000000000000000000000000000000000000",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "badgeId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "newuri",
+            "type": "string"
+          }
+        ],
+        "name": "setBadgeURI",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "badgeId": "1",
+        "newuri": "ipfs://bafkreifx3oyygr5ektwwne2zy23boefcaj3b56t2gmqed42zxpmnq56xpe"
+      }
+    },
+    {
+      "to": "0xC25F373B2535F49Ca474dE76EfC9688e06d668Fd",
+      "value": "0",
+      "data": "0x65fb1ee2000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000042697066733a2f2f6261666b726569626f6468736d7462656267707978796e6a6535376f62743375646672667069327537756f67773675357435666a656c696c677271000000000000000000000000000000000000000000000000000000000000",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "badgeId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "newuri",
+            "type": "string"
+          }
+        ],
+        "name": "setBadgeURI",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "badgeId": "2",
+        "newuri": "ipfs://bafkreibodhsmtbebgpyxynje57obt3udfrfpi2u7uogw6u5t5fjelilgrq"
+      }
+    },
+    {
+      "to": "0xC25F373B2535F49Ca474dE76EfC9688e06d668Fd",
+      "value": "0",
+      "data": "0x65fb1ee2000000000000000000000000000000000000000000000000000000000000000300000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000042697066733a2f2f6261666b72656968366f6836637661633737786b66796c726375716967723578766a75627a366d76623768717a73707366683765616c7964707679000000000000000000000000000000000000000000000000000000000000",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "badgeId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "newuri",
+            "type": "string"
+          }
+        ],
+        "name": "setBadgeURI",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "badgeId": "3",
+        "newuri": "ipfs://bafkreih6oh6cvac77xkfylrcuqigr5xvjubz6mvb7hqzspsfh7ealydpvy"
+      }
+    },
+    {
+      "to": "0xC25F373B2535F49Ca474dE76EfC9688e06d668Fd",
+      "value": "0",
+      "data": "0x65fb1ee2000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000042697066733a2f2f6261666b7265696278647a76677562736a62717036797474633571656e6437706d72627562696c646f6d6c687861613271736b6961676a616d6369000000000000000000000000000000000000000000000000000000000000",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "badgeId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "newuri",
+            "type": "string"
+          }
+        ],
+        "name": "setBadgeURI",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "badgeId": "4",
+        "newuri": "ipfs://bafkreibxdzvgubsjbqp6yttc5qend7pmrbubildomlhxaa2qskiagjamci"
+      }
+    }
+  ]
+}
