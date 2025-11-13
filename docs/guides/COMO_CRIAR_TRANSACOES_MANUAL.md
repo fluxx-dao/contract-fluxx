@@ -15,18 +15,22 @@ O Safe Transaction Builder às vezes não aceita importação de JSON. Vamos cri
 ```
 
 ### Transação 1: Fundador #1
+
 - **Endereço:** `0xB04A61b436cFc40e7Aad7B73b34E47dAd79cc57f`
 - **Quantidade (wei):** `600000000000000000000`
 
 ### Transação 2: Fundador #2
+
 - **Endereço:** `0xa387691E594dF109aD9cA83767F39D419CBC6001`
 - **Quantidade (wei):** `200000000000000000000`
 
 ### Transação 3: Fundador #3
+
 - **Endereço:** `0x887b641EF4A1e99022e290dF6Ac9c81eA50AE0CD`
 - **Quantidade (wei):** `200000000000000000000`
 
 ### Transação 4: Fundador #4
+
 - **Endereço:** `0xc8b6C6cF88ecE28EfDede72ed625b95b73Cb649F`
 - **Quantidade (wei):** `200000000000000000000`
 
@@ -35,6 +39,7 @@ O Safe Transaction Builder às vezes não aceita importação de JSON. Vamos cri
 ## 🚀 Passo a Passo Rápido
 
 ### 1. Carregar Contrato
+
 1. No campo "Enter Address", cole: `0xB1430cc106bd664F68BE8d0167A52a29654CF8BA`
 2. Clique em "Load"
 
@@ -47,6 +52,7 @@ O Safe Transaction Builder às vezes não aceita importação de JSON. Vamos cri
 3. **Clique:** "+ Add new transaction"
 
 ### 3. Revisar e Enviar
+
 - Revise as 4 transações
 - Clique em "Create Batch"
 - Assine e aguarde aprovações

@@ -10,4 +10,7 @@ typechain-types
 cache
 artifacts
 
+# Development files
+.dev/
+
 .DS_Store

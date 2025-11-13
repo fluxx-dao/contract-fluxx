@@ -45,6 +45,7 @@ await badgeNFT.setBadgeURI(4, "https://fluxx.space/badges/4.json");
 #### Outros Contratos
 
 **Token, Treasury, Governance, Membership, CollabEngine:**
+
 - ✅ **NÃO têm URLs hardcoded**
 - ✅ **NÃO precisam de atualização**
 - ✅ Funcionam independentemente do domínio

@@ -29,6 +29,7 @@
 - [ ] Verificar código-fonte do contrato CollabEngine
 
 **Como fazer:**
+
 1. Acesse: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
 2. Clique em "Contract" → "Verify and Publish"
 3. Faça upload do código-fonte ou use o verificador automático

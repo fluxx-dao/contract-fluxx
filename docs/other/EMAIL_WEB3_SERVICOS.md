@@ -40,15 +40,18 @@ Configurar email profissional usando o domínio `fluxx.space` para:
 ### 2. **Microsoft 365 (Outlook)** 
 
 **Vantagens:**
+
 - ✅ Profissional e confiável
 - ✅ Integração com Office 365
 - ✅ Boa para empresas
 
 **Preço:**
+
 - $6 USD/mês por usuário (Microsoft 365 Business Basic)
 - $12.50 USD/mês por usuário (Microsoft 365 Business Standard)
 
 **Como configurar:**
+
 1. Acesse: https://www.microsoft.com/pt-br/microsoft-365
 2. Escolha o plano Business
 3. Adicione domínio `fluxx.space`
@@ -59,11 +62,13 @@ Configurar email profissional usando o domínio `fluxx.space` para:
 ### 3. **Zoho Mail** (Mais Econômico) 💰
 
 **Vantagens:**
+
 - ✅ Mais barato
 - ✅ Plano gratuito disponível (limitado)
 - ✅ Boa para pequenos projetos
 
 **Preço:**
+
 - Grátis: até 5 usuários (com limitações)
 - $1 USD/mês por usuário (Mail Lite)
 - $4 USD/mês por usuário (Mail Premium)
@@ -79,15 +84,18 @@ Configurar email profissional usando o domínio `fluxx.space` para:
 ### 4. **ProtonMail** (Focado em Privacidade) 🔒
 
 **Vantagens:**
+
 - ✅ Criptografia end-to-end
 - ✅ Privacidade máxima
 - ✅ Popular em projetos Web3
 
 **Preço:**
+
 - $4.99 USD/mês por usuário (ProtonMail Plus)
 - $9.99 USD/mês por usuário (ProtonMail Professional)
 
 **Como configurar:**
+
 1. Acesse: https://proton.me/mail
 2. Escolha o plano Professional
 3. Adicione domínio `fluxx.space`
@@ -98,15 +106,18 @@ Configurar email profissional usando o domínio `fluxx.space` para:
 ### 5. **Tuta Mail** (Privacidade + Preço) 🔐
 
 **Vantagens:**
+
 - ✅ Criptografado
 - ✅ Open source
 - ✅ Preço acessível
 
 **Preço:**
+
 - €3/mês por usuário (Tuta Mail Premium)
 - Suporta domínios personalizados
 
 **Como configurar:**
+
 1. Acesse: https://tuta.com/
 2. Escolha o plano Premium
 3. Adicione domínio `fluxx.space`
@@ -117,15 +128,18 @@ Configurar email profissional usando o domínio `fluxx.space` para:
 ## 🎯 Recomendação para FLUXX DAO
 
 ### Para Início Rápido: **Google Workspace**
+
 - ✅ Mais aceito por plataformas (PolygonScan, CoinGecko, etc.)
 - ✅ Configuração simples
 - ✅ Profissional
 
 ### Para Economia: **Zoho Mail**
+
 - ✅ Plano gratuito disponível
 - ✅ Suficiente para começar
 
 ### Para Privacidade Web3: **ProtonMail**
+
 - ✅ Alinhado com valores Web3
 - ✅ Criptografia forte
 
@@ -184,6 +198,7 @@ Após escolher o serviço de email, você precisará adicionar os seguintes regi
 ## ⚠️ Importante para PolygonScan
 
 O PolygonScan aceita emails de domínio personalizado, mas:
+
 - ✅ O email deve estar funcionando
 - ✅ O domínio deve estar acessível (https://fluxx.space)
 - ✅ O email deve estar visível no site (página de contato)
@@ -195,6 +210,7 @@ O PolygonScan aceita emails de domínio personalizado, mas:
 ## 🚀 Passo a Passo Rápido (Google Workspace)
 
 1. **Registrar no Google Workspace**
+
    - Acesse: https://workspace.google.com/
    - Escolha "Começar" → "Para minha empresa"
    - Escolha plano Business Starter ($6/mês)

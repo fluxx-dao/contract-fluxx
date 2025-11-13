@@ -91,14 +91,17 @@ Após verificar, você pode atualizar o logo:
 ## ⚠️ Problemas Comuns
 
 **Erro: "Constructor arguments are not correct"**
+
 - Verifique se os parâmetros estão na ordem correta
 - Use os endereços exatos (com 0x no início)
 
 **Erro: "Compiler version mismatch"**
+
 - Use exatamente a versão 0.8.20
 - Verifique no arquivo `hardhat.config.js` qual versão foi usada
 
 **Erro: "Contract code does not match"**
+
 - Certifique-se de copiar TODO o código do `Token.sol`
 - Inclua os imports (mesmo que o PolygonScan não os use diretamente)
 
@@ -106,8 +109,10 @@ Após verificar, você pode atualizar o logo:
 
 ## 🔗 Links Úteis
 
-- **Contrato Token**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
-- **Verificar Contrato**: https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA#code
+- **Contrato Token**:
+https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
+- **Verificar Contrato**:
+https://polygonscan.com/address/0xB1430cc106bd664F68BE8d0167A52a29654CF8BA#code
 - **PolygonScan Docs**: https://docs.polygonscan.com/
 
 ---

@@ -19,6 +19,7 @@ badgeNFT.authorizeMinter(enderecoCollabEngine);
 ```
 
 **Transações necessárias:**
+
 - [ ] `BadgeNFT.authorizeMinter(Membership)` 
 - [ ] `BadgeNFT.authorizeMinter(CollabEngine)`
 
@@ -35,6 +36,7 @@ token.authorizeMinter(enderecoGovernance); // Para Governance poder mintar via p
 ```
 
 **Transações necessárias:**
+
 - [ ] `Token.authorizeMinter(Governance)` - **OBRIGATÓRIO**
 - [ ] `Token.authorizeMinter(Treasury)` - **OPCIONAL** (se necessário)
 
@@ -50,6 +52,7 @@ treasury.setGovernance(enderecoGovernance);
 ```
 
 **Transações necessárias:**
+
 - [ ] `Treasury.setGovernance(Governance)` - **OBRIGATÓRIO**
 
 ---
@@ -68,17 +71,20 @@ treasury.setGovernance(enderecoGovernance);
 ## 🔍 Como Verificar se Está Configurado
 
 ### Verificar BadgeNFT:
+
 ```solidity
 badgeNFT.authorizedMinter(enderecoMembership); // deve retornar true
 badgeNFT.authorizedMinter(enderecoCollabEngine); // deve retornar true
 ```
 
 ### Verificar Token:
+
 ```solidity
 token.authorizedMinters(enderecoGovernance); // deve retornar true
 ```
 
 ### Verificar Treasury:
+
 ```solidity
 treasury.governanceContract(); // deve retornar enderecoGovernance
 ```

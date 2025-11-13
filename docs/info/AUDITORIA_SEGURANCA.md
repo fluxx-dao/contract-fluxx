@@ -40,16 +40,19 @@
 Acesse: https://polygonscan.com/address/0xF040BbD411542F09f775E974fA88E16bF7406d26
 
 **Verifique:**
-- [ ] É um contrato Gnosis Safe (não um EOA)
-- [ ] Tem múltiplos signatários (owners)
-- [ ] Threshold configurado (ex: 2 de 3, 3 de 5)
+
+- [x] É um contrato Gnosis Safe (não um EOA)
+- [x] Tem múltiplos signatários (owners)
+- [x] Threshold configurado (ex: 2 de 3, 3 de 5)
 
 ### 🎯 Veredito:
 
 **SE o owner for `0xF040BbD411542F09f775E974fA88E16bF7406d26` (Gnosis Safe):**
+
 - ✅ **VERDE** - Sistema seguro com multisig
 
 **SE o owner for qualquer outro endereço (EOA):**
+
 - 🔴 **VERMELHO CATASTRÓFICO** - DAO refém de uma única chave privada
 
 ---

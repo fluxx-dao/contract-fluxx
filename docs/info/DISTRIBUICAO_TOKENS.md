@@ -90,6 +90,7 @@ Para cada fundador, adicione uma transação:
 | **Parcerias** | 10.000.000 FLUXX | ⚠️ Wallet não definida |
 
 **Nota:** As wallets de Missões e Parcerias podem ser:
+
 - Novas wallets criadas especificamente para isso
 - O próprio Treasury (e depois distribuir via Governance)
 - O Gnosis Safe (e depois distribuir via propostas)

@@ -35,6 +35,7 @@ https://app.safe.global/apps/open?safe=matic:0xF040BbD411542F09f775E974fA88E16bF
 ### Passo 3: Carregar o Contrato BadgeNFT
 
 1. No campo **"Enter Address or ENS Name"**, cole:
+
    ```
    0xAba2f3E32C0Fac859e21bC7a8EcAAF173200F7Ce
    ```
@@ -48,6 +49,7 @@ https://app.safe.global/apps/open?safe=matic:0xF040BbD411542F09f775E974fA88E16bF
      - **Opção B:** Deixar vazio e o Safe tentará buscar automaticamente (pode não funcionar se o contrato não estiver verificado)
 
 **Se precisar do ABI completo:**
+
 - Abra o arquivo `badgenft-abi.json` no projeto
 - Copie todo o conteúdo JSON
 - Cole no campo "Enter ABI"
@@ -129,6 +131,7 @@ Agora você deve ter **4 transações** na lista:
 ```
 
 **Revise cada uma:**
+
 - ✅ Endereço do contrato está correto
 - ✅ Função está correta (`setBadgeURI`)
 - ✅ Parâmetros estão corretos

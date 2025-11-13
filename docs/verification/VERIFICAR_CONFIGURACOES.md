@@ -20,6 +20,7 @@ Pela transação "5 Transaction Builder" com 6 ações, você já executou:
 **Contrato:** `0x263Fe9898b8A9bba3E08403cC9054dCa39a11636`  
 **Função:** `authorizedMinters(address)`  
 **Verificar:**
+
 - `0x4ccbA0a6230028d92CD71B81638a6eE56ba1C9af` (Treasury) → deve retornar `true`
 - `0x00A4006ce4F0E9693Fa631A834d99dFEbb72F013` (Governance) → deve retornar `true`
 

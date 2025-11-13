@@ -5,6 +5,7 @@
 ### Endereços Confirmados (do deployment-info.json):
 
 ✅ **Todos os endereços estão CORRETOS:**
+
 - **Deployer:** `0xB04A61b436cFc40e7Aad7B73b34E47dAd79cc57f` (Fundador #1)
 - **Gnosis Safe:** `0xF040BbD411542F09f775E974fA88E16bF7406d26`
 - **Token:** `0xB1430cc106bd664F68BE8d0167A52a29654CF8BA`
@@ -63,6 +64,7 @@ Vamos testar se o Safe pode fazer `transfer()` mesmo sem ter os tokens. Se funci
 ### Teste 2: Verificar Saldo do Safe
 
 Verifique no PolygonScan se o Safe tem tokens:
+
 - Acesse: https://polygonscan.com/address/0xF040BbD411542F09f775E974fA88E16bF7406d26
 - Verifique o saldo de FLUXX do Safe
 

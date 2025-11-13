@@ -13,6 +13,7 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 **Problema:** Governance podia drenar fundos instantaneamente.
 
 **Solução Implementada:**
+
 - Adicionado sistema de timelock de 2 dias
 - Funções `queueWithdrawal()` e `executeWithdrawal()`
 - Todas as saques via Governance agora requerem espera de 2 dias
@@ -26,6 +27,7 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 **Problema:** Quorum fixo permitia 1% dos membros aprovar saques.
 
 **Solução Implementada:**
+
 - Quorum proporcional de 20% dos votantes elegíveis
 - Fallback para quorum mínimo absoluto (para início da DAO)
 - Função `_calcularTotalVotantesElegiveis()` adicionada
@@ -40,6 +42,7 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 **Problema:** Demandante podia provar aplicação mesmo não sendo mais membro.
 
 **Solução Implementada:**
+
 - Validação `membership.isMember(msg.sender)` em `provarAplicacao()`
 - Garante que apenas membros ativos podem finalizar missões
 
@@ -52,9 +55,10 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 **Problema:** Missões podiam ficar travadas indefinidamente.
 
 **Solução Implementada:**
-- Constante `TIMEOUT_MISSAO = 30 days`
+
+- Constante `TIMEOUT_MISSAO = 14 days`
 - Função `cancelarMissaoTimeout()` adicionada
-- Permite cancelar missões após 30 dias sem entrega
+- Permite cancelar missões após 14 dias sem entrega
 
 **Arquivo:** `contracts/CollabEngine.sol`
 
@@ -65,6 +69,7 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 **Problema:** Fiadores maliciosos podiam indicar sem stake suficiente.
 
 **Solução Implementada:**
+
 - Mapping `stakeDoFiador` para rastrear stake real
 - Validação de stake do fiador em `registerWithGuarantor()`
 - Função `slashGuarantor()` melhorada para reduzir stake do fiador
@@ -79,6 +84,7 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 **Problema:** Badges podiam ser queimados por qualquer um.
 
 **Solução Implementada:**
+
 - Sistema de `authorizedBurner` (apenas owner pode autorizar)
 - Funções `authorizeBurner()` e `revokeBurner()`
 - Função `burn()` para queimar badges (punições)
@@ -103,9 +109,10 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 
 ## ⚠️ Próximos Passos
 
-### Antes do Deploy:
+### Antes do Deploy
 
 1. **Compilar contratos:**
+
    ```bash
    npx hardhat compile
    ```
@@ -137,4 +144,3 @@ Todas as vulnerabilidades críticas identificadas foram corrigidas antes das tra
 **Status:** ✅ Todas as correções críticas implementadas  
 **Data:** Novembro 2025  
 **Pronto para:** Compilar, testar e fazer deploy
-

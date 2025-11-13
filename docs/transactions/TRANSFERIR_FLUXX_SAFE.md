@@ -13,6 +13,7 @@ Este guia mostra como transferir $FLUXX do Treasury para outras carteiras de for
 **Objetivo:** Dar $FLUXX aos fundadores para que possam fazer stake no Membership.
 
 **Quantidade necessária:**
+
 - **Fundador #1:** 600 $FLUXX (500 para registro + 100 para criar missão)
 - **Fundadores #2, #3:** 100-200 $FLUXX cada (100 para registro + extra)
 
@@ -21,6 +22,7 @@ Este guia mostra como transferir $FLUXX do Treasury para outras carteiras de for
 **Objetivo:** Transferir $FLUXX para a carteira que vai criar a pool de liquidez no Uniswap.
 
 **Quantidade necessária:**
+
 - Depende da estratégia de liquidez
 - Exemplo: 10.000-100.000 $FLUXX para pool inicial
 
@@ -41,6 +43,7 @@ O **Treasury** (`0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93`) recebeu **100 milh
 ### ⚠️ ATENÇÃO:
 
 O **Token** foi deployado com o **Gnosis Safe como owner**. Isso significa que:
+
 - ✅ Apenas o Safe pode fazer `transfer()` diretamente do Treasury
 - ✅ Ou você precisa usar `Treasury.withdrawTokens()` via Governance
 

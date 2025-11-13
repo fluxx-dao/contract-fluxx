@@ -28,6 +28,7 @@ Este método é mais simples e direto, sem usar o Transaction Builder.
 
 #### Campo 1: "To Address" ou "Contract Address"
 ```
+
 0xB1430cc106bd664F68BE8d0167A52a29654CF8BA
 ```
 (Cole o endereço do Token)
@@ -39,6 +40,7 @@ Se pedir ABI, cole apenas esta parte:
 ```
 
 #### Campo 3: Selecionar Função
+
 - Procure na lista: **`transfer`**
 - OU digite: `transfer(address,uint256)`
 - Clique para selecionar

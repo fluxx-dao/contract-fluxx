@@ -51,6 +51,7 @@ Function: transfer(address to, uint256 amount)
 ```
 
 **Onde:**
+
 - `[ENDEREÇO_FUNDADOR_2]` = Endereço do Fundador #2
 - `02b5e3af16b1880000` = 200 FLUXX em hex (200 * 1e18)
 
@@ -81,6 +82,7 @@ Function: transfer(address to, uint256 amount)
 ```
 
 **Onde:**
+
 - `[ENDEREÇO_CARTEIRA_DAO]` = Endereço da carteira que vai criar liquidez
 - `21e19e0c9bab2400000` = 10.000 FLUXX em hex (10000 * 1e18)
 
@@ -98,6 +100,7 @@ Function: transfer(address to, uint256 amount)
 ```
 
 **Onde:**
+
 - `152d02c7e14af680000` = 100.000 FLUXX em hex (100000 * 1e18)
 
 ---

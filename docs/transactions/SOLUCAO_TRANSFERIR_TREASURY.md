@@ -3,6 +3,7 @@
 ## ❌ Problema Identificado
 
 O erro "execution reverted" confirma que:
+
 - Os tokens estão no **Treasury** (`0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93`)
 - O Safe **não pode** transferir tokens diretamente usando `transfer()` do Token
 - O Treasury só permite saques via **Governance** (`onlyGovernance`)
