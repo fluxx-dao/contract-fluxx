@@ -1,0 +1,16 @@
+{
+  "network": "polygon",
+  "deployer": "0x3242FcE40be49b25DDBb86a7119E55De54b99d57",
+  "manager": "0x8CFe7B2704802A72a82F9a253E45c6145EF2AF00",
+  "dao": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+  "owner": "0xF040BbD411542F09f775E974fA88E16bF7406d26",
+  "constructorArgs": [
+    "0xF040BbD411542F09f775E974fA88E16bF7406d26",
+    "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA"
+  ],
+  "timestamp": "2025-11-21T06:24:55.000Z",
+  "polygonscan": "https://polygonscan.com/address/0x8CFe7B2704802A72a82F9a253E45c6145EF2AF00",
+  "verified": false,
+  "note": "Wrapper minimalista para compatibilidade Thirdweb Dashboard. Contratos core da DAO não foram modificados."
+}
+

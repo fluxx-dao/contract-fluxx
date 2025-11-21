@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": 1734739200000,
+  "meta": {
+    "name": "Transferir 50 FLUXX do Treasury para Safe",
+    "description": "Usa withdrawTokensByOwner (onlyOwner, sem timelock) para transferir 50 FLUXX do Treasury para Safe",
+    "txBuilderVersion": "1.16.0",
+    "createdFromSafeAddress": "0xF040BbD411542F09f775E974fA88E16bF7406d26",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93",
+      "value": "0",
+      "data": "0xd7f55f42000000000000000000000000b1430cc106bd664f68be8d0167a52a29654cf8ba000000000000000000000000000000000000000000000002b5e3af16b1880000000000000000000000000000f040bbd411542f09f775e974fa88e16bf7406d26",
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "withdrawTokensByOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenAddress": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+        "amount": "50000000000000000000",
+        "to": "0xF040BbD411542F09f775E974fA88E16bF7406d26"
+      }
+    }
+  ]
+}

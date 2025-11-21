@@ -1,0 +1,114 @@
+[
+  {
+    "to": "0xC36442b4a4522E871399CD717aBDD847Ab11FE88",
+    "value": "0",
+    "data": "0x883164560000000000000000000000002791bca1f2de4661ed88a30c99a7a9449aa84174000000000000000000000000b1430cc106bd664f68be8d0167a52a29654cf8ba0000000000000000000000000000000000000000000000000000000000000bb8fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff2761800000000000000000000000000000000000000000000000000000000000d89e800000000000000000000000000000000000000000000000000000000009896800000000000000000000000000000000000000000000000056bc75e2d6310000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000f040bbd411542f09f775e974fa88e16bf7406d26000000000000000000000000000000000000000000000000000000006b005021",
+    "contractMethod": {
+      "inputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "token0",
+              "type": "address"
+            },
+            {
+              "internalType": "address",
+              "name": "token1",
+              "type": "address"
+            },
+            {
+              "internalType": "uint24",
+              "name": "fee",
+              "type": "uint24"
+            },
+            {
+              "internalType": "int24",
+              "name": "tickLower",
+              "type": "int24"
+            },
+            {
+              "internalType": "int24",
+              "name": "tickUpper",
+              "type": "int24"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount0Desired",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1Desired",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount0Min",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount1Min",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "recipient",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "deadline",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct INonfungiblePositionManager.MintParams",
+          "name": "params",
+          "type": "tuple"
+        }
+      ],
+      "name": "mint",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "liquidity",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount0",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    "contractInputsValues": {
+      "params": {
+        "token0": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+        "token1": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+        "fee": "3000",
+        "tickLower": "-887272",
+        "tickUpper": "887272",
+        "amount0Desired": "10000000",
+        "amount1Desired": "100000000000000000000",
+        "amount0Min": "0",
+        "amount1Min": "0",
+        "recipient": "0xF040BbD411542F09f775E974fA88E16bF7406d26",
+        "deadline": "1795182625"
+      }
+    }
+  }
+]
+

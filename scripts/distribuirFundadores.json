@@ -1,0 +1,138 @@
+{
+  "version": "1.0",
+  "chainId": "137",
+  "createdAt": "2025-11-20T22:28:56.350Z",
+  "meta": {
+    "name": "Distribuir FLUXX aos Fundadores",
+    "description": "Distribuição de 10.000.000 FLUXX entre 4 fundadores (2.5M cada)",
+    "txBuilderVersion": "1.16.2",
+    "createdFromSafeAddress": "0xF040BbD411542F09f775E974fA88E16bF7406d26",
+    "createdFromOwnerAddress": ""
+  },
+  "transactions": [
+    {
+      "to": "0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "withdrawTokensByOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenAddress": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+        "amount": "2500000000000000000000000",
+        "to": "0xB04A61b436cFc40e7Aad7B73b34E47dAd79cc57f"
+      }
+    },
+    {
+      "to": "0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "withdrawTokensByOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenAddress": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+        "amount": "2500000000000000000000000",
+        "to": "0xa387691E594dF109aD9cA83767F39D419CBC6001"
+      }
+    },
+    {
+      "to": "0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "withdrawTokensByOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenAddress": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+        "amount": "2500000000000000000000000",
+        "to": "0x887b641EF4A1e99022e290dF6Ac9c81eA50AE0CD"
+      }
+    },
+    {
+      "to": "0x5eC0FE666E99a697BB9B88b4b053AEFB78570F93",
+      "value": "0",
+      "data": null,
+      "contractMethod": {
+        "inputs": [
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "to",
+            "type": "address"
+          }
+        ],
+        "name": "withdrawTokensByOwner",
+        "payable": false
+      },
+      "contractInputsValues": {
+        "tokenAddress": "0xB1430cc106bd664F68BE8d0167A52a29654CF8BA",
+        "amount": "2500000000000000000000000",
+        "to": "0xc8b6C6cF88ecE28EfDede72ed625b95b73Cb649F"
+      }
+    }
+  ]
+}

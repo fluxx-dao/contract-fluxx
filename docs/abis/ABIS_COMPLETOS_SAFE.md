@@ -631,6 +631,7 @@ O Safe Transaction Builder precisa do ABI completo do contrato, não apenas de u
 ```
 
 **Funções a usar:**
+
 - `authorizeMinter` → Parâmetro: `0x707f9a126D8d7bbCd7e40Fc0CEF1cdAa76678925` (Membership)
 - `authorizeMinter` → Parâmetro: `0xfF972C1917FBaaE17a02Dea0BBEC29EBbd5c4f28` (CollabEngine)
 - `authorizeBurner` → Parâmetro: `0x00A4006ce4F0E9693Fa631A834d99dFEbb72F013` (Governance)

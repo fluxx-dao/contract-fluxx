@@ -88,6 +88,26 @@ Estes são os valores corretos conforme o script de deploy (`scripts/deploy.js`)
 
 ---
 
+---
+
+## 📊 Transações e Transferências
+
+### ✅ Comportamento Normal no PolygonScan
+
+Quando você usa `Treasury.withdrawTokensByOwner()` para distribuir tokens:
+
+- ✅ **Transações aparecem na aba do Token:** Todas as transferências são visíveis
+- ✅ **Transações aparecem na aba do Treasury:** Chamadas de `withdrawTokensByOwner()` são visíveis
+- ❌ **Transações NÃO aparecem na aba do Contrato Token:** Isso é normal e esperado
+
+**Por quê?** A transação é enviada ao Treasury, que então chama `Token.transfer()`. O evento `Transfer` é emitido pelo Token, então aparece na aba do Token. Mas como a transação não foi enviada diretamente ao Token, não aparece na aba do Contrato Token.
+
+**Isso é o comportamento padrão em todos os explorers EVM (PolygonScan, Etherscan, etc.).**
+
+📖 **Documentação completa:** Ver [`docs/guides/EXPLICACAO_TRANSACOES_TOKEN.md`](../guides/EXPLICACAO_TRANSACOES_TOKEN.md)
+
+---
+
 **Última atualização:** Novembro 2025  
 **Status:** ✅ Deploy Confirmado
 

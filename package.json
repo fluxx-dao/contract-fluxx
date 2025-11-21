@@ -12,12 +12,14 @@
   "type": "commonjs",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@tenderly/hardhat-tenderly": "^2.5.2",
     "hardhat": "^2.27.0"
   },
   "dependencies": {
     "@chainlink/contracts": "^1.5.0",
     "@openzeppelin/contracts": "^5.4.0",
-    "dotenv": "^17.2.3"
+    "dotenv": "^17.2.3",
+    "thirdweb": "^5.112.4"
   },
   "optionalDependencies": {
     "@safe-global/safe-core-sdk": "^3.3.5",
